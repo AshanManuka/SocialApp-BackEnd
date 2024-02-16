@@ -3,6 +3,7 @@ package com.designCenter.designCenter.service.impl;
 import com.designCenter.designCenter.constant.CommonConstant;
 import com.designCenter.designCenter.dto.SampleSignUpDto;
 import com.designCenter.designCenter.dto.common.CustomServiceException;
+import com.designCenter.designCenter.dto.user.TempToken;
 import com.designCenter.designCenter.dto.user.UserReqDto;
 import com.designCenter.designCenter.dto.user.UserResDto;
 import com.designCenter.designCenter.entity.SampleImage;
@@ -42,7 +43,7 @@ public class UserServiceImpl implements UserService {
                 .password(reqDto.getPassword())
                 .registered(new Date())
                 .updated(new Date())
-                .status(ActiveStatus.PENDING)
+                .status(ActiveStatus.ACTIVE)
                 .build();
 
         if(reqDto.getProfileImage() != null && !reqDto.getProfileImage().isEmpty()){
@@ -55,23 +56,33 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public String sampleSignUp(SampleSignUpDto dto) throws IOException {
-        SampleImage sImage = SampleImage.builder()
-                .imageName(dto.getName())
-                .imageData(dto.getImage().getBytes())
-                .build();
-        imageRepository.save(sImage);
-        return sImage.getImageName();
+    public TempToken checkCredentials(String userName, String password) {
+        log.info("Checking Credentials");
+        User user = userRepository.findByUserName(userName);
+        if(user == null) throw new CustomServiceException(CommonConstant.NotFoundConstants.NO_USER_FOUND);
+        if(!user.getPassword().equals(password)) throw new CustomServiceException(CommonConstant.ErrorConstants.INVALID_CREDENTIALS);
+        return new TempToken(user.getId(),user.getEmail());
     }
 
-    @Override
-    public byte[] getImageById(Long id) {
-        Optional<SampleImage> optionalImageEntity = imageRepository.findById(id);
-        if (optionalImageEntity.isPresent()) {
-            SampleImage imageEntity = optionalImageEntity.get();
-            return imageEntity.getImageData();
-        }
-        return null;
-    }
+//    @Override
+//    public String sampleSignUp(SampleSignUpDto dto) throws IOException {
+//        SampleImage sImage = SampleImage.builder()
+//                .imageName(dto.getName())
+//                .imageData(dto.getImage().getBytes())
+//                .build();
+//        imageRepository.save(sImage);
+//        return sImage.getImageName();
+//    }
+//
+//    @Override
+//    public byte[] getImageById(Long id) {
+//        Optional<SampleImage> optionalImageEntity = imageRepository.findById(id);
+//        if (optionalImageEntity.isPresent()) {
+//            SampleImage imageEntity = optionalImageEntity.get();
+//            return imageEntity.getImageData();
+//        }
+//        return null;
+//    }
+
 
 }

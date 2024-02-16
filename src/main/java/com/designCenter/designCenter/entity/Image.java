@@ -23,6 +23,9 @@ public class Image {
     private Date uploaded;
     private Date updated;
 
+    @Lob
+    private byte[] picture;
+
     @Enumerated(EnumType.STRING)
     private ActiveStatus activeStatus;
 
