@@ -111,7 +111,7 @@
 
 
 	<build>
-		<finalName>designCenter</finalName>
+		<finalName>socialApp</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -132,19 +132,5 @@
 		</plugins>
 	</build>
 
-<!--	<build>-->
-<!--		<finalName>designCenter</finalName>-->
-<!--		<plugins>-->
-<!--			<plugin>-->
-<!--				<groupId>org.springframework.boot</groupId>-->
-<!--				<artifactId>spring-boot-maven-plugin</artifactId>-->
-<!--				<configuration>-->
-<!--					<image>-->
-<!--						<builder>paketobuildpacks/builder-jammy-base:latest</builder>-->
-<!--					</image>-->
-<!--				</configuration>-->
-<!--			</plugin>-->
-<!--		</plugins>-->
-<!--	</build>-->
 
 </project>

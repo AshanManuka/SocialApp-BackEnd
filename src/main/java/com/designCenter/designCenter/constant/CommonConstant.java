@@ -6,6 +6,7 @@ public class CommonConstant {
 
     public static final class NotFoundConstants{
         public static final String NO_USER_FOUND = "User not Found..!";
+        public static final String NO_IMAGE_FOUND = "Images not Found..!";
         public static final String NO_CATEGORY_FOUND = "Category not Found..!";
     }
 

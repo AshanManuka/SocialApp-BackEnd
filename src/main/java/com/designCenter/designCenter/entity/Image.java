@@ -17,7 +17,6 @@ public class Image {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String title;
     private String description;
     private Date uploaded;
@@ -28,6 +27,7 @@ public class Image {
 
     @Enumerated(EnumType.STRING)
     private ActiveStatus activeStatus;
+    private Long likeCount;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(nullable = false)

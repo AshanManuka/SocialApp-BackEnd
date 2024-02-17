@@ -27,20 +27,4 @@ public class PublicController {
         return ResponseEntity.ok(new CommonResponse<>(true,userResponse));
     }
 
-//    @PostMapping(value = "/sign-up")
-//    public ResponseEntity<?> userSignUp(@ModelAttribute SampleSignUpDto reqDto) throws IOException {
-//        String result = userService.sampleSignUp(reqDto);
-//        return ResponseEntity.ok(new CommonResponse<>(true,result));
-//    }
-//
-//    @GetMapping(value = "/retrieve/{id}", produces = MediaType.IMAGE_JPEG_VALUE)
-//    public ResponseEntity<byte[]> retrieveImage(@PathVariable Long id) {
-//        try {
-//            byte[] imageData = userService.getImageById(id);
-//            return ResponseEntity.ok().body(imageData);
-//        } catch (Exception e) {
-//            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
-//        }
-//    }
-
 }
