@@ -109,7 +109,6 @@
 
 	</dependencies>
 
-
 	<build>
 		<finalName>socialApp</finalName>
 		<plugins>
@@ -125,8 +124,11 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				<version>2.3.1.RELEASE</version> <!-- Specify the version of spring-boot-maven-plugin -->
 				<configuration>
 					<outputDirectory>/data/tomcat/webapps</outputDirectory>
+					<!-- Specify the main class -->
+					<mainClass>com.designCenter.DesignCenterApplication</mainClass>
 				</configuration>
 			</plugin>
 		</plugins>
