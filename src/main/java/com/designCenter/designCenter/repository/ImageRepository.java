@@ -10,4 +10,7 @@ public interface ImageRepository extends JpaRepository<Image,Long> {
 
     @Query(value = "SELECT i FROM Image i WHERE i.user.id=?1")
     List<Image> getAllImagesByUser(Long id);
+
+    @Query(value ="SELECT * FROM image ORDER BY id DESC LIMIT 20", nativeQuery = true)
+    List<Image> getImagesForMainFeed();
 }

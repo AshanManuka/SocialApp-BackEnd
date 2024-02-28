@@ -78,5 +78,26 @@ public class ImageServiceImpl implements ImageService {
         return null;
     }
 
+    @Override
+    public byte[] getUserProfileImage(Long userId) {
+        User user = userRepository.findById(userId).orElseThrow(() -> new CustomServiceException(CommonConstant.NotFoundConstants.NO_USER_FOUND));
+        if(user.getProfileImage().length != 0){
+            return user.getProfileImage();
+        }else{
+            return new byte[0];
+        }
+    }
+
+    @Override
+    public List<ImageResDto> getTodayImages() {
+        log.info("Getting today Images for feed");
+        List<Image> images = imageRepository.getImagesForMainFeed();
+        if(images.isEmpty()) throw new CustomServiceException(CommonConstant.NotFoundConstants.NO_IMAGE_FOUND);
+        return images
+                .stream()
+                .map(image -> modelMapper.map(image, ImageResDto.class))
+                .collect(Collectors.toList());
+    }
+
 
 }

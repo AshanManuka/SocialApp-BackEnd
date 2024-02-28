@@ -54,6 +54,22 @@ public class AppUserController {
         return ResponseEntity.ok().body(image);
     }
 
+    @GetMapping(value = "/my-profile-pic")
+    public ResponseEntity<?> getUserProfilePic(@RequestParam Long userId){
+        log.info("Load User profile Image details by, UserId: {}",userId);
+        byte[] image = imageService.getUserProfileImage(userId);
+        return ResponseEntity.ok().body(image);
+    }
+
+    @GetMapping(value = "/today-images")
+    public ResponseEntity<?> getTodayImages(){
+        log.info("Load today images");
+        List<ImageResDto> imageList = imageService.getTodayImages();
+        return ResponseEntity.ok(new CommonResponse<>(true,imageList));
+    }
+
+
+
 
 
 

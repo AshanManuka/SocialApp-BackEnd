@@ -13,4 +13,8 @@ public interface ImageService {
     List<ImageResDto> getImagesByUser(Long userId);
 
     byte[] getSingleImagesByUser(Long userId, Long imageId);
+
+    byte[] getUserProfileImage(Long userId);
+
+    List<ImageResDto> getTodayImages();
 }
