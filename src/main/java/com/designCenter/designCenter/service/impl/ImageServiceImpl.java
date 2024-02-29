@@ -42,6 +42,8 @@ public class ImageServiceImpl implements ImageService {
         Category category = categoryRepository.findById(categoryId).orElseThrow(() -> new CustomServiceException(CommonConstant.NotFoundConstants.NO_CATEGORY_FOUND));
         log.info("selected category id:{}",category.getId());
 
+        log.info("Dto :{}",reqDto);
+
         Image sImage = Image.builder()
                 .title(reqDto.getTitle())
                 .description(reqDto.getDescription())
