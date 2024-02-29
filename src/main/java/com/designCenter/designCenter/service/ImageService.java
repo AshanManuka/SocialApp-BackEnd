@@ -17,4 +17,6 @@ public interface ImageService {
     byte[] getUserProfileImage(Long userId);
 
     List<ImageResDto> getTodayImages();
+
+    List<ImageResDto> searchImage(String keyword);
 }

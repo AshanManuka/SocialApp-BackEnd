@@ -105,5 +105,16 @@ public class ImageServiceImpl implements ImageService {
                 .collect(Collectors.toList());
     }
 
+    @Override
+    public List<ImageResDto> searchImage(String keyword) {
+        log.info("Getting Images by KeyWord");
+        List<Image> images = imageRepository.searchImageByKeyword(keyword);
+        if(images.isEmpty()) throw new CustomServiceException(CommonConstant.NotFoundConstants.NO_IMAGE_FOUND);
+        return images
+                .stream()
+                .map(image -> modelMapper.map(image, ImageResDto.class))
+                .collect(Collectors.toList());
+    }
+
 
 }

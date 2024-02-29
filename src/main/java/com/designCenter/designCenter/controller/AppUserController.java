@@ -68,6 +68,13 @@ public class AppUserController {
         return ResponseEntity.ok(new CommonResponse<>(true,imageList));
     }
 
+    @GetMapping(value = "/search")
+    public ResponseEntity<?> searchImages(@RequestParam String keyword){
+        log.info("Search Images by Keyword: {}",keyword);
+        List<ImageResDto> imageList = imageService.searchImage(keyword);
+        return ResponseEntity.ok(new CommonResponse<>(true,imageList));
+    }
+
 
 
 

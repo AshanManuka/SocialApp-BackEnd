@@ -13,4 +13,7 @@ public interface ImageRepository extends JpaRepository<Image,Long> {
 
     @Query(value ="SELECT * FROM image ORDER BY id DESC LIMIT 20", nativeQuery = true)
     List<Image> getImagesForMainFeed();
+
+    @Query(value = "SELECT * FROM image WHERE TITLE LIKE CONCAT('%', ?1, '%') OR DESCRIPTION LIKE CONCAT('%', ?1, '%') LIMIT 20", nativeQuery=true)
+    List<Image> searchImageByKeyword(String keyword);
 }
