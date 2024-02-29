@@ -11,7 +11,7 @@ public interface ImageRepository extends JpaRepository<Image,Long> {
     @Query(value = "SELECT i FROM Image i WHERE i.user.id=?1")
     List<Image> getAllImagesByUser(Long id);
 
-    @Query(value ="SELECT * FROM image ORDER BY id ASC LIMIT 20", nativeQuery = true)
+    @Query(value ="SELECT * FROM image ORDER BY id DESC LIMIT 20", nativeQuery = true)
     List<Image> getImagesForMainFeed();
 
     @Query(value = "SELECT * FROM image WHERE TITLE LIKE CONCAT('%', ?1, '%') OR DESCRIPTION LIKE CONCAT('%', ?1, '%') LIMIT 20", nativeQuery=true)
