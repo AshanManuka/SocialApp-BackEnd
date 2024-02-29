@@ -4,6 +4,7 @@ import com.designCenter.designCenter.dto.common.CommonResponse;
 import com.designCenter.designCenter.dto.image.ImageReqDto;
 import com.designCenter.designCenter.dto.image.ImageResDto;
 import com.designCenter.designCenter.dto.user.TempToken;
+import com.designCenter.designCenter.dto.user.UserBasicResDto;
 import com.designCenter.designCenter.service.ImageService;
 import com.designCenter.designCenter.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -61,6 +62,13 @@ public class AppUserController {
         return ResponseEntity.ok().body(image);
     }
 
+    @GetMapping(value = "/my-profile")
+    public ResponseEntity<?> getProfileByUser(@RequestParam Long userId){
+        log.info("Load User profile details by, UserId: {}",userId);
+        UserBasicResDto resDto = imageService.getUserProfileDetail(userId);
+        return ResponseEntity.ok().body(resDto);
+    }
+
     @GetMapping(value = "/today-images")
     public ResponseEntity<?> getTodayImages(){
         log.info("Load today images");
@@ -74,8 +82,6 @@ public class AppUserController {
         List<ImageResDto> imageList = imageService.searchImage(keyword);
         return ResponseEntity.ok(new CommonResponse<>(true,imageList));
     }
-
-
 
 
 

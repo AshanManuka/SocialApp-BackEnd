@@ -10,6 +10,6 @@ import lombok.*;
 public class UserBasicResDto {
     private Long id;
     private String name;
-    private String profileImage;
+    private byte[] profileImage;
     private String email;
 }

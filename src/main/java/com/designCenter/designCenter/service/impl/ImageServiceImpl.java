@@ -4,6 +4,7 @@ import com.designCenter.designCenter.constant.CommonConstant;
 import com.designCenter.designCenter.dto.common.CustomServiceException;
 import com.designCenter.designCenter.dto.image.ImageReqDto;
 import com.designCenter.designCenter.dto.image.ImageResDto;
+import com.designCenter.designCenter.dto.user.UserBasicResDto;
 import com.designCenter.designCenter.entity.Category;
 import com.designCenter.designCenter.entity.Image;
 import com.designCenter.designCenter.entity.User;
@@ -114,6 +115,16 @@ public class ImageServiceImpl implements ImageService {
                 .stream()
                 .map(image -> modelMapper.map(image, ImageResDto.class))
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public UserBasicResDto getUserProfileDetail(Long userId) {
+        log.info("Check Is user exists, UserId:{}",userId);
+        User user = userRepository.findById(userId).orElseThrow(() -> new CustomServiceException(CommonConstant.NotFoundConstants.NO_USER_FOUND));
+        UserBasicResDto response = modelMapper.map(user,UserBasicResDto.class);
+        log.info(response);
+
+        return response;
     }
 
 
