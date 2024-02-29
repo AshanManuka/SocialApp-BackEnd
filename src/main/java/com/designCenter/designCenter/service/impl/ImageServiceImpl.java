@@ -38,7 +38,9 @@ public class ImageServiceImpl implements ImageService {
     public String uploadImage(ImageReqDto reqDto, Long userId, Long categoryId) throws IOException {
         log.info("Finding the user by Id");
         User user = userRepository.findById(userId).orElseThrow(() -> new CustomServiceException(CommonConstant.NotFoundConstants.NO_USER_FOUND));
+        log.info("got user email: {}",user.getEmail());
         Category category = categoryRepository.findById(categoryId).orElseThrow(() -> new CustomServiceException(CommonConstant.NotFoundConstants.NO_CATEGORY_FOUND));
+        log.info("selected category id:{}",category.getId());
 
         Image sImage = Image.builder()
                 .title(reqDto.getTitle())
@@ -50,6 +52,8 @@ public class ImageServiceImpl implements ImageService {
                 .user(user)
                 .category(category)
                 .build();
+
+        log.info("Ready to save");
 
         imageRepository.save(sImage);
         return "saved";
